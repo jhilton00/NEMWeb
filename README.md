@@ -3,23 +3,37 @@
 ## Easy access to Australia's electricity generation data from nemweb.com.au
 
 ## Purpose
-A Python program providing easy access to the large amount of archived
+1. A Python program providing easy access to the large amount of archived
 data of Australia's main electricity grid provided by the market
 operator, AEMO.
+2. A power-flow analysis.
+3. A model of AEMO's [Intergrated System Plan 2024 (ISP)](
+https://aemo.com.au/energy-systems/major-publications/integrated-system-plan-isp/2024-integrated-system-plan-isp)
+based on the 2024 analysis.
 
 ## Just the Results
-For NEMWeb.py output for calendar year 2024 click to download...
-* [NEM In Out List Jan-Dec 2024.xlsx](
-  NEM%20In%20Out%20List%20Jan-Dec%202024.xlsx)
-* [NEM Year by Category Jan-Dec 2024.xlsx](
-  NEM%20Year%20by%20Category%20Jan-Dec%202024.xlsx)
+1. For NEMWeb.py output for calendar year 2024 click to download...
+>* [NEM In Out List Jan-Dec 2024.xlsx](
+   NEM%20In%20Out%20List%20Jan-Dec%202024.xlsx) (<1MB)
+>* [NEM Year by Category Jan-Dec 2024.xlsx](
+   NEM%20Year%20by%20Category%20Jan-Dec%202024.xlsx) (14MB)
 
-The category results are analysed in
-[NEM Analysis 2024.xlsx](NEM%20Analysis%202024.xlsx)
-and shown in [NEM Daily Generation 2024.pdf](
-NEM%20Daily%20Generation%202024.pdf) and
-[Average NEM Power Flows 2024.pdf](
-Average%20NEM%20Power%20Flows%202024.pdf).
+2. For the analysis
+>* [NEM Analysis 2024.xlsx](NEM%20Analysis%202024.xlsx) (26MB)
+>* [NEM Daily Generation 2024.pdf](NEM%20Daily%20Generation%202024.pdf)
+>* [Average NEM Power Flows 2024.pdf](
+   Average%20NEM%20Power%20Flows%202024.pdf)
+
+3. For the model
+>* [NEM ISP 2050.xlsx](NEM%20ISP%202050.xlsx) (48MB)\
+   Provides the model based on the Hydro, Grid Solar, Wind, Rooftop
+   Solar and Demand data from _NEM&nbsp;Analysis&nbsp;2024.xlsx_.
+>* [ISPs 2050 NEM Based on 2024 NEM Data.xlsx](
+   ISPs%202050%20NEM%20Based%20on%202024%20NEM%20Data.xlsx) (66MB)\
+   Calculates 5-day rolling averages and creates three charts.
+>* [ISPs 2050 NEM Based on 2024 NEM Data.pdf](
+   ISPs%202050%20NEM%20Based%20on%202024%20NEM%20Data.pdf)\
+   Includes the three charts along with some explanation.
 
 ## Usage
 There are three key files
