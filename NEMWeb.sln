@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Average NEM Power Flows 2024.pdf = Average NEM Power Flows 2024.pdf
 		DUID Categories.csv = DUID Categories.csv
-		ISPs 2050 NEM Based on 2024 NEM Data.pdf = ISPs 2050 NEM Based on 2024 NEM Data.pdf
-		ISPs 2050 NEM Based on 2024 NEM Data.xlsx = ISPs 2050 NEM Based on 2024 NEM Data.xlsx
 		NEM Analysis 2024.xlsx = NEM Analysis 2024.xlsx
 		NEM Daily Generation 2024.pdf = NEM Daily Generation 2024.pdf
 		NEM In Out List Jan-Dec 2024.xlsx = NEM In Out List Jan-Dec 2024.xlsx
-		NEM ISP 2050.xlsx = NEM ISP 2050.xlsx
 		NEM Year by Category Jan-Dec 2024.xlsx = NEM Year by Category Jan-Dec 2024.xlsx
+		NEM ISP 2050 Analysis.pdf = NEM ISP 2050 Analysis.pdf
+		NEM ISP 2050 Analysis.xlsx = NEM ISP 2050 Analysis.xlsx
+		NEM ISP 2050 Simulation.xlsx = NEM ISP 2050 Simulation.xlsx
 		README.md = README.md
 		requirements.txt = requirements.txt
 	EndProjectSection

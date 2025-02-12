@@ -7,35 +7,39 @@
 data of Australia's main electricity grid provided by the market
 operator, AEMO.
 2. A power-flow analysis.
-3. A model of AEMO's [Intergrated System Plan 2024 (ISP)](
+3. A net-zero 2050 simulation of AEMO's [Intergrated System Plan 2024 (ISP)](
 https://aemo.com.au/energy-systems/major-publications/integrated-system-plan-isp/2024-integrated-system-plan-isp)
 based on the 2024 analysis.
 
 ## Just the Results
 1. For NEMWeb.py output for calendar year 2024 click to download...
 >* [NEM In Out List Jan-Dec 2024.xlsx](
-   NEM%20In%20Out%20List%20Jan-Dec%202024.xlsx) (<1MB)
+    NEM%20In%20Out%20List%20Jan-Dec%202024.xlsx) (<1MB)
 >* [NEM Year by Category Jan-Dec 2024.xlsx](
-   NEM%20Year%20by%20Category%20Jan-Dec%202024.xlsx) (14MB)
+    NEM%20Year%20by%20Category%20Jan-Dec%202024.xlsx) (14MB)
 
 2. For the analysis
 >* [NEM Analysis 2024.xlsx](NEM%20Analysis%202024.xlsx) (26MB)
 >* [NEM Daily Generation 2024.pdf](NEM%20Daily%20Generation%202024.pdf)
 >* [Average NEM Power Flows 2024.pdf](
-   Average%20NEM%20Power%20Flows%202024.pdf)
+    Average%20NEM%20Power%20Flows%202024.pdf)
 
-3. For the model
->* [NEM ISP 2050.xlsx](NEM%20ISP%202050.xlsx) (48MB)\
-   Provides the model based on the Hydro, Grid Solar, Wind, Rooftop
-   Solar and Demand data from _NEM&nbsp;Analysis&nbsp;2024.xlsx_.
->* [ISPs 2050 NEM Based on 2024 NEM Data.xlsx](
-   ISPs%202050%20NEM%20Based%20on%202024%20NEM%20Data.xlsx) (66MB)\
-   Calculates 5-day rolling averages and creates three charts.
->* [ISPs 2050 NEM Based on 2024 NEM Data.pdf](
-   ISPs%202050%20NEM%20Based%20on%202024%20NEM%20Data.pdf)\
-   Includes the three charts along with some explanation.
+3. For the simulation
+>* [NEM ISP 2050 Simulation.xlsx](
+    NEM%20ISP%202050%20Simulation.xlsx) (52MB)\
+    A simulation of the ISP's NEM grid based on 2024's Hydro, Grid
+    Solar, Wind, Rooftop Solar and Demand data from _NEM&nbsp;
+    Analysis&nbsp;2024.xlsx_.
+>* [NEM ISP 2050 Analysis.xlsx](
+    NEM%20ISP%202050%20Analysis.xlsx) (66MB)\
+    Derives results from the simulation including 5-day rolling
+    averages plus three charts.
+>* [NEM ISP 2050 Analysis.pdf](
+    NEM%20ISP%202050%20Analysis.pdf)\
+    Presents and discusses the results.
 
-## Usage
+## 1. NEMWeb.py
+### Usage
 There are three key files
 * NEMWeb.py
 * DUID Categories.csv
@@ -62,7 +66,7 @@ generation graph with rooftop solar included. The graphs show overall GW
 generation in 5-minute intervals. NEMWeb.py runs much faster once the
 binary PKL files exist.
 
-## Introduction (From Google AI)
+### Introduction (From Google AI)
 The National Electricity Market (NEM) is Australia's wholesale
 electricity market and physical power system, which generates, buys,
 sells, and transports electricity. The NEM is one of the world's largest
@@ -77,13 +81,13 @@ scheduling the lowest priced generation available to meet demand, and
 for restoring energy systems to a secure operating state in the event of
 an emergency.
 
-## Background
+### Background
 AEMO provides the last 13 months of NEM generation in the Dispatch_SCADA
 and ROOFTOP_PV/ACTUAL subdirectories of
 www.nemweb.com.au/REPORTS/ARCHIVE.
 * SCADA - Supervisory Control And Data Acquisition
 
-### Dispatch_SCADA
+#### Dispatch_SCADA
 Dispatch_SCADA data consists of over 20 million records per year. Each
 active generator or storage device sends a record to AEMO every 5
 minutes of its power output or input to the electricity grid. Power
@@ -96,7 +100,7 @@ One good source of information about the NEM;'s generators and storage
 devices is the spreadsheet, nem-registration-and-exemption-list.xlsx,
 at aemo.com.au/-/media/files/electricity/nem/participant_information.
 
-### ROOFTOP_PV
+#### ROOFTOP_PV
 Rooftop_PV data (PV - PhotoVoltaic) is the rooftop solar generation of
 the five Australian states provided by home or business owners to their
 local electricity distribution network. It does not include rooftop
@@ -106,7 +110,7 @@ AEMO into weekly ZIP files. NEMWeb uses the total power output for each
 state, identified with region identifiers as NSW1, QLD1, SA1, TAS1 and
 VIC1. 365 day's worth of this data contains 87,600 records.
 
-## Execution
+### Execution
 * Load the most recent 12 months of
   * 'Dispatch_SCADA' 5-minute interval electricity generator/storage
 	data into a set of daily dataframe and
@@ -163,7 +167,7 @@ from each daily Dispatch_SCADA or weekly ROOFTOP_PV ZIP file is then
 saved as Python pickle data in the local data directory using the
 original ZIP filename but with a .pkl extension.
 
-## Analysis
+## 2. Analysis
 The worksheet in [NEM Year by Category Jan-Dec 2024.xlsx](
 NEM%20Year%20by%20Category%20Jan-Dec%202024.xlsx) is copied (by value)
 into the first tab of [NEM Analysis 2024.xlsx](
@@ -186,7 +190,7 @@ The demand curve is the graph showing this power. In this analysis it is
 the commercial and residential power consumption plus the consumption of
 aluminium smelters.
 
-## What's Missing?
+### What's Missing?
 1. The power consumption of other large smelters and refineries apart from
 the four aluminium smelters is not known. Presumably their power delivery
 would not include distribution networks and so their distribution network
@@ -213,3 +217,242 @@ These shutdowns buy back power that the facility was to purchase,
 effectively implementing a blackout of the facility although that term
 is avoided in polite circles. The payments are not publically disclosed
 and, FWIW, there is suspicion that the cost per kWh is massive.
+
+## 3. ISP 2050 Simulation
+The simulation and results are two separate Excel spreadsheets since
+Excel's performance dramatically drops when the results calculations
+are in the same spreadsheet as the simulation. The simulation takes
+under a minute to run after which the simulation cells (excluding
+row 1) in the 'MW' tab are manually copy-pasted-by-value into the results
+'MW' tab.
+
+### Abbreviations, Prefix, Constants & Parameters
+|Abbreviation|
+|-|-
+|Trnsn|Transmission Grid
+|DN|Distribution Network
+|CR|Commercial & Residential
+|SynCon|Synchronous Condenser
+
+|Prefix|
+|-|-
+|n|a negated value
+
+|Constant|Value| |
+|-|-
+|IntervalsPerHour|60 / 5|twelve 5-minute intervals per hour
+
+#### ISP Derived Parameters
+|Parameter|Typical Value|Source
+|-|-|-
+|Hydro_Factor|83%|ISP Page 11 graph, 7.5/9 - as measured from the graph
+|Grid_Solar_Factor|6|ISP Page 11, bottom dot point
+|Wind_Factor|6|ISP Page 11, bottom dot point
+|Rooftop_Solar_Factor|4|ISP Page 12 third dot point
+|Storage_Capacity|646 GWh|ISP Page 12 second dot point
+|Storage_Generation_Capacity|49 GW|ISP Page 12 second dot point
+|Non_hydro_storage_Baseload|19 GW|See below
+
+* ISP Page 11, bottom dot point\
+   "Triple grid-scale variable renewable energy (VRE) by 2030, and
+   increase it six-fold by 2050"
+* ISP Page 12 third dot point\
+   "Support a forecast four-fold increase in rooftop solar capacity"
+* ISP Page 12 second dot point\
+   "This includes 49 GW/ 646 gigawatt hours (GWh) of dispatchable
+   storage"
+* Non_hydro_storage_Baseload
+  * 19 GW = 75 GW - 8.5 GW x 83% - 49 GW
+    * ISP Page 73 2nd paragraph\
+       "75 GW of firming technology"
+    * ISP Page 65 4th paragraph\
+       "Firming technologies include storage, hydro, gas and other
+	   fuelled generation."
+    * ISP Page 6\
+       "8.5 GW of hydropower assets in operation across Australia today"
+
+#### Other Parameters
+|Parameter|Typical Value|Source
+|-|-|-
+|Average_Dist_Network_Loss_Factor|5%|typically cited by the industry
+|Average_Transmission_Loss_Factor|5% (typically cited) +3%|for longer average transmission distances
+|Storage_Discharging_Efficiency|82%|from 2024's average for pumped-hydro & battery turnaround efficiency
+|Storage_Charging_Loss_Factor|82%|ditto
+|Aluminium_Smelters_Consumption|2,118 MW|from industry info with Tomago removed
+|SynCon_Power_Consumption|1,057 MW|see discussion below
+|Rooftop_to_Dist_Network_Factor|95%|educated guess
+|Starting_Storage|323 GWh|chosen value - 50% of Storage_Capacity
+|Storage_Threshhold_May_to_Aug|95%|chosen value for low wind+solar months
+|Storage_Threshhold_Sep_to_Apr|30%|chosen value
+
+##### SynCon_Power_Consumption
+Information on actual power consumption of synchronous condensers has
+been difficult to find. Synchronous condensers do have significant
+cooling systems attached to them so there is significant power
+consumption.
+
+The UK grid has an average annual power of 37 GW and 220 GWs of
+inertia. The ratio of these values is used to estimate the NEM's 2050
+inertia of 364 GWs given the 61 GW average annual generation from the
+simulation.
+
+Research did lead to a power consumption factor of 2.9MW/GWs although
+confidence in this value is not high.
+
+Further research or actual performance data is needed.
+
+### Algorithm
+#### Create the input arrays by scaling 2024's 5-minute interval results.
+The following is pseudo code intended to describe the Excel formula in
+the spreadsheet. Refer to the spreadsheet for the actual formulae.
+```
+// Scale each array of data.
+Hydro = Hydro_2024 * Hydro_Factor
+Grid_Solar = Grid_Solar_2024 * Grid_Solar_Factor
+Wind = Wind_2024 * Wind_Factor
+Rooftop_Solar = Rooftop_Solar_2024 * Rooftop_Solar_Factor
+nDemand = nDemand_2024 * Demand_Factor
+```
+
+#### Initialise
+```
+// Note: [-1] indicates the previous interval which, in this case, is 1-Jan-2050 00:00.
+StrgLevel[-1] = Starting_Storage
+Average_Demand = -AVERAGE(nDemand)
+
+// Determine the percentage of non-aluminium smelter demand.
+CR_Factor = (Average_Demand - Aluminium_Smelters_Consumption) / Average_Demand
+```
+
+#### Loop over each 5-minute interval
+##### Scale 2024's actual data to create the input data for the 2050 model.
+```
+Hydro = Hydro_2024 * Hydro_Factor
+Grid_Solar = Grid_Solar_2024 * Grid_Solar_Factor
+Wind = Wind_2024 * Wind_Factor
+Rooftop_Solar = Rooftop_Solar_2024 * Rooftop_Solar_Factor
+nDemand = nDemand_2024 * Demand_Factor
+```
+##### Determine transmission grid losses for hydro, wind and grid solar.
+```
+nHGWTrnsnLosses = -(Hydro + Wind + Grid_Solar) * Average_Trnsn_Loss_Factor
+```
+##### Assume constant synchronous condenser consumption.
+```
+nSynCon = -SynCon_Power_Consumption
+```
+##### Determine the maximum storage generation.
+```
+StrgGenLimit = MIN(StrgLevel[-1] * IntervalsPerHour * Storage_Discharging_Efficiency,
+                   Storage_Generation_Capacity)
+```
+##### Determine the maximum transmission grid delivery.
+```
+TrnsnSupplyLimit = Hydro + Grid_Solar + Wind + nHGWTrnsnLosses + nSynCon
+                   + (Non_hydro_storage_Baseload + StrgGenLimit)
+                   * (1 - Average_Trnsn_Loss_Factor)
+```
+##### Calculate the rooftop solar power delivered to the distribution network.
+```
+CR_to_DN =Rooftop_Solar * Rooftop_to_Dist_Network_Factor
+```
+##### Determine the distribution network supply needed to avoid blackouts.
+```
+NonBlackoutDN_to_CR = -nDemand-Aluminium_Smelters_Consumption
+                      - Rooftop_Solar * (1 - Rooftop_to_Dist_Network_Factor)
+```
+##### Determine the power input to the distribution network demand needed to avoid blackouts.
+```
+NonBlackoutDNDemand = NonBlackoutDN_to_CR / (1 - Average_Dist_Network_Loss_Factor) - CR_to_DN
+```
+##### See if the transmission grid can supply the demand.
+```
+TrnsnSupply = MIN(NonBlackoutDNDemand, TrnsnSupplyLimit - Aluminium_Smelters_Consumption)
+```
+##### Calculate the distribution network losses.
+```
+nDNLosses = -(TrnsnSupply + CR_to_DN) * Average_Dist_Network_Loss_Factor
+```
+##### Calculate the distribution network to commercial & residential demand.
+```
+DN_to_CR = TrnsnSupply + CR_to_DN + nDNLosses
+```
+##### Calculate the amount of blackout power, if any.
+```
+nBlackouts = DN_to_CR - NonBlackoutDN_to_CR
+```
+##### Calculate the power supplied before baseload may be needed.
+```
+BalanceBeforeBaseload = Hydro + Grid_Solar + Wind + nHGWTrnsnLosses + nSynCon - TrnsnSupply
+                        - Aluminium_Smelters_Consumption
+```
+##### Calculate the power provided by non-hydro-storage baseload generators.
+```
+NonHydroStrgBaseloadGen	= MIN((MAX(0, StrgThreshhold[-1] - StrgLevel[-1]) * IntervalsPerHour
+                              - MIN(MIN(BalanceBeforeBaseload, 0)
+                                / (1 - Average_Transmission_Loss_Factor) + StrgGenLimit, 0))
+                              , Non_hydro_storage_Baseload)
+```
+##### Calculate transmission losses from non-hydro-storage baseload power.
+```
+nBaseloadTrnsnLosses = -NonHydroStrgBaseloadGen * Average_Trnsn_Loss_Factor
+```
+##### Calculate the power supplied before storage may be needed.
+```
+BalanceAfterBaseload = BalanceBeforeBaseload + NonHydroStrgBaseloadGen + nBaseloadTrnsnLosses
+```
+##### Calculate the power provided from storage.
+```
+StrgGen = MIN(-MIN(BalanceAfterBaseload, 0) / (1 - Average_Trnsn_Loss_Factor),
+	      StrgGenLimit)
+
+```
+##### Calculate transmission losses of the power supplied from storage.
+```
+nStrgTrnsnLosses = -StrgGen * Average_Trnsn_Loss_Factor
+```
+##### Calculate the power absorbed by storage.
+```
+nStrgLoad = MIN(-MIN(MAX(BalanceAfterBaseload, 0), Storage_Generation_Capacity),
+                MAX(Storage_Capacity - StrgLevel[-1], 0) * IntervalsPerHour
+                / (1 - Storage_Charging_Efficiency))
+```
+##### Calculate the final power balance.
+```
+BalanceAfterStrg = BalanceAfterBaseload + StrgGen + nStrgTrnsnLosses + nStrgLoad
+```
+##### Determine any spillage.
+```
+nSpillage = -MAX(BalanceAfterStrg, 0)
+```
+##### Calculate storage losses and storage level.
+```
+nStrgLosses = nStrgLoad * (1 - Storage_Charging_Efficiency)
+              - StrgGen * (1 - Storage_Discharging_Efficiency)
+StrgLevel = StrgLevel[-1] + (-StrgGen - nStrgLoad + nStrgLosses) / IntervalsPerHour
+
+```
+##### Specify the storage threshhold used to turn on baseload generation.
+```
+// The four months May to Aug have low average wind and solar generation and so
+// may need more baseload support.
+StrgThreshhold = IF(_5_minute_interval<DATE(year,9,1),
+		    IF(_5_minute_interval<DATE(year,5,1),
+		       Storage_Threshhold_Sep_to_Apr,
+		       Storage_Threshhold_May_to_Aug),
+		    Storage_Threshhold_Sep_to_Apr)
+```
+### Results
+* [NEM ISP 2050 Simulation.xlsx](
+   NEM%20ISP%202050%20Simulation.xlsx) (52MB)\
+   A simulation of the ISP's NEM grid based on 2024's Hydro, Grid
+   Solar, Wind, Rooftop Solar and Demand data from _NEM&nbsp;
+   Analysis&nbsp;2024.xlsx_.
+* [NEM ISP 2050 Analysis.xlsx](NEM%20ISP%202050%20Analysis.xlsx) (66MB)\
+   Derives results from the simulation including 5-day rolling
+   averages plus three charts.
+* [NEM ISP 2050 Analysis.pdf](
+   NEM%20ISP%202050%20Analysis.pdf)\
+   Presents and discusses the results.
+
+<hr style="margin-left:20%; width:60%; align-self:center" />
