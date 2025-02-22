@@ -277,9 +277,9 @@ row 1) in the 'MW' tab are manually copy-pasted-by-value into the results
 |Average_Dist_Network_Loss_Factor|5%|typically cited by the industry
 |Average_Transmission_Loss_Factor|5% (typically cited) +3%|for longer average transmission distances
 |Storage_Discharging_Efficiency|82%|from 2024's average for pumped-hydro & battery turnaround efficiency
-|Storage_Charging_Loss_Factor|82%|ditto
+|Storage_Charging_Efficiency|82%|ditto
 |Aluminium_Smelters_Consumption|2,118 MW|from industry info with Tomago removed
-|SynCon_Power_Consumption|1,057 MW|see discussion below
+|SynCon_Power_Consumption|400 MW|see discussion below
 |Rooftop_to_Dist_Network_Factor|95%|educated guess
 |Starting_Storage|323 GWh|chosen value - 50% of Storage_Capacity
 |Storage_Threshhold_May_to_Aug|95%|chosen value for low wind+solar months
@@ -291,15 +291,20 @@ been difficult to find. Synchronous condensers do have significant
 cooling systems attached to them so there is significant power
 consumption.
 
-The UK grid has an average annual power of 37 GW and 220 GWs of
-inertia. The ratio of these values is used to estimate the NEM's 2050
-inertia of 364 GWs given the 61 GW average annual generation from the
-simulation.
+An initial approach was based on comparison with the UK grid, having an
+average annual power of 37 GW and 220 GWs of inertia. Research did lead
+to a power consumption factor of 2.9MW/GWs although confidence in this
+value is not high. The estimated syncon consumption was over 800 MW for
+the 2050 NEM.
 
-Research did lead to a power consumption factor of 2.9MW/GWs although
-confidence in this value is not high.
+Feedback from industry experts suggested, for a 55 GW average grid, a
+syncon VA power rating of 10 GVA was reasonable and losses were
+typically 2% of the VA rating for the syncons plus 2% losses for the
+transformers connecting them to the grid. So a 400 MW syncon loss was
+used in the simulation.
 
-Further research or actual performance data is needed.
+Further research or actual performance data could improve these values.
+The 2024 ISP is superbly silent on this issue.
 
 ### Algorithm
 #### Create the input arrays by scaling 2024's 5-minute interval results.
